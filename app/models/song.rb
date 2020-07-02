@@ -3,6 +3,7 @@ class Song < ActiveRecord::Base
   belongs_to :genre 
   has_many :notes 
   
+
    def artist_name
     self.artist.name if self.artist
   end
@@ -25,16 +26,17 @@ class Song < ActiveRecord::Base
       self.notes.build(content: note)
     end
   end
-
-  def genre=(id)
-    self.genre_id = id.to_i
-  end
-
-  def note_contents
-    content = []
+  
+  def song_notes
+    ret = []
     self.notes.each do |note|
-      content << note.content
+      ret << note.content unless note.content.empty?
     end
-    content
+    ret
   end
+
+  
+
+
+
 end

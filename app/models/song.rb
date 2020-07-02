@@ -27,25 +27,8 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def genre=(id)
-    self.genre_id = id.to_i
-  end
-
-  def note_contents
-    content = []
-    self.notes.each do |note|
-      content << note.content
-    end
-    content
-  end
+  
 
 
-  def artist_name=(name)
-    self.artist = Artist.find_or_create_by(name: name)
-   end
- 
-   def artist_name
-      self.artist ? self.artist.name : nil
-   end
 
 end
